@@ -21,6 +21,8 @@ class ScheduleMaker:
 
         self.inAction = False
 
+     
+
 
     def _playgame(self, team1, team2, sport):
         self.teamsPlayed[team1].append(team2)
@@ -76,13 +78,16 @@ class ScheduleMaker:
 
         return False
     
-    def _displaySchedule(self, rounds: int):
+    def _displaySchedule(self, rounds: int) -> list:
+        formattedGameData = []
         for round in range(1, rounds+1):
-            print("-------"*3, "round", round, "-------"*3)
+            formattedGameData.append(("-------"*3+"round"+str(round)+"-------"*3))
+            print(f"round {round} begins")
             for team in self.teams:
                 print(f"team {team} will play team {self.teamsPlayed[team][round-1]} in {self.sportsPlayed[team][round-1]}")
-        
+                formattedGameData.append((f"team {team} will play team {self.teamsPlayed[team][round-1]} in {self.sportsPlayed[team][round-1]}"))
 
+        return formattedGameData
 
 
     def _playRound(self):
@@ -94,7 +99,9 @@ class ScheduleMaker:
         return pairTeams
 
 
-    def createScedule(self, activities: int) -> str:
+    def createScedule(self, activities: int) -> dict["schedule", "rounds"]:
+        allData = {}
+
         if self.inAction:
             return "cannot create schedule while in action"
         self.inAction = True
@@ -106,11 +113,13 @@ class ScheduleMaker:
         self.inAction = False
 
 
-        self._displaySchedule(roundsCanPlay)
-        return f"{roundsCanPlay} rounds can be played"
+        allData["schedule"] = self._displaySchedule(roundsCanPlay)
+        allData["rounds"] = roundsCanPlay
+        return allData
 
 
-
-sportOptions = ["baseketball", "football", "hockey", "volleyball"]
-main = ScheduleMaker([i for i in range(1, 9)], sportOptions)
-main.createScedule(3)
+if __name__ == "__main__":
+    sportOptions = ["baseketball", "football", "hockey", "volleyball"]
+    teams = ["tigers", "lions", "bears", "foxes", "squirrels", "swans", "alpines", "buffalos"]
+    main = ScheduleMaker(teams, sportOptions)
+    main.createScedule(3)

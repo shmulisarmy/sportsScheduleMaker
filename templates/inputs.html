@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schedule maker</title>
+    <style>
+        form
+        {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .teams, .sports {
+            display: flex;
+            justify-content: space-evenly;
+            
+        }
+    </style>
+</head>
+<body>
+    <form action="/makeSchedule" method="post"> 
+        <div class="teams">
+            {% for team in sportInputs %}
+            <div class="input">
+                <label for="team{{team}}">team{{team}}</label>
+                <br>
+                <input type="text" name="team{{team}}">
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="sports">
+            {% for sport in teamInputs %}
+            <div class="input">
+                <label for="sport{{sport}}">sport{{sport}}</label>
+                <br>
+                <input type="text" name="sport{{sport}}">
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit">create schedule</button>
+        
+    </form>
+    
+</body>
+</html>
