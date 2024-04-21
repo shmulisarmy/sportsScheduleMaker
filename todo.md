@@ -1,0 +1,2 @@
+- [] use data field for search in form
+- [] preify the schedule so that it can be printed
