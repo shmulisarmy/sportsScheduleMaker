@@ -1,5 +1,10 @@
-<h1>Sports Schedule</h1>
-<h3>you will be able to play a max of {{ data["rounds"]}} rounds</h3>
+<fieldset>
+
+    
+    
+    <legend>Sports Schedule</legend>
+    <h3>you will be able to play a max of {{ data["rounds"]}} rounds</h3>
     {% for round in data["schedule"] %}
-        <p>{{ round }}</p>
+    <p>{{ round }}</p>
     {% endfor %}
+</fieldset>
