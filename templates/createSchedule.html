@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Schedule</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <h1>Sports Schedule</h1>
-    <h3>you will be able to play a max of {{ data["rounds"]}} rounds</h3>
-        {% for round in data["schedule"] %}
-            <p>{{ round }}</p>
-        {% endfor %}
-        
-</body>
-</html>
+<h1>Sports Schedule</h1>
+<h3>you will be able to play a max of {{ data["rounds"]}} rounds</h3>
+    {% for round in data["schedule"] %}
+        <p>{{ round }}</p>
+    {% endfor %}
