@@ -10,11 +10,18 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
+@app.route('/provideForm', methods=['POST'])
+def provideForm():
+    data = request.form
+    print(data)
+    sportInputs = int(data.get("sports"))
+    teamInputs = int(data.get("teams"))
+    return render_template("inputs.html", sportInputs=[i for i in range(1, sportInputs+1)], teamInputs=[i for i in range(1, teamInputs+1)])
+    
+
 @app.route('/makeSchedule', methods=['GET', 'POST'])
 def makeSchedule():
-    if request.method == 'GET':
-        return render_template("inputs.html", sportInputs=[i for i in range(1, 5)], teamInputs=[i for i in range(1, 5)])
-    
     data = request.form
     sportOptions = [data["sport" + str(i)] for i in range(1, 5)]
     teams = [data["team" + str(i)] for i in range(1, 5)]
@@ -28,4 +35,4 @@ def makeSchedule():
     return render_template("createSchedule.html", data=main.createScedule(3))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

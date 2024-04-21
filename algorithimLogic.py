@@ -105,6 +105,7 @@ class ScheduleMaker:
         if self.inAction:
             return "cannot create schedule while in action"
         self.inAction = True
+        roundsCanPlay = 0
         for round in range(1, activities+1):
             if self._playRound():
                 roundsCanPlay = round
